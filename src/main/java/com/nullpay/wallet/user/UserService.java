@@ -24,4 +24,8 @@ public class UserService {
         user.password = createUserDto.password;
         return this.userRepository.save(user);
     }
+
+    public User getUserById(String userId) {
+        return this.userRepository.findById(userId).orElse(null);
+    }
 }
