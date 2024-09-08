@@ -1,4 +1,4 @@
-package com.nullpay.wallet.auth;
+package com.nullpay.wallet.config.security;
 
 import com.nullpay.wallet.user.User;
 import io.jsonwebtoken.Claims;

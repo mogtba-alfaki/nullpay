@@ -1,8 +1,6 @@
-package com.nullpay.wallet.config;
+package com.nullpay.wallet.config.security;
 
 
-import com.nullpay.wallet.auth.AuthenticationFilter;
-import com.nullpay.wallet.auth.JwtService;
 import com.nullpay.wallet.auth.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,12 +23,14 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtService jwtService, UserDetailsServiceImpl userDetailsServiceImpl) throws Exception {
+        System.out.println("*************** A Request Came trying to validate");
+        System.out.println("URL: " + http.toString());
         http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/api/*")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
+            .authorizeHttpRequests(authorize ->
+             authorize
+            .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/login").permitAll()
+            .requestMatchers("/api/**").authenticated()
+                     .anyRequest().permitAll()
             )
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

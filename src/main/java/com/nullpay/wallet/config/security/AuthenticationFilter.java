@@ -1,6 +1,7 @@
-package com.nullpay.wallet.auth;
+package com.nullpay.wallet.config.security;
 
 
+import com.nullpay.wallet.auth.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +25,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         String authHeader = request.getHeader("Authorization");
-        String token = null;
-        String userId = null;
+        String token;
+        String userId;
         if (authHeader == null  ||  !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
