@@ -6,6 +6,7 @@ import com.nullpay.wallet.user.usecases.CreateUserUseCase;
 import com.nullpay.wallet.user.usecases.FindUsersUseCase;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,6 +19,9 @@ public class UserService {
         this.createUserUseCase = createUserUseCase;
     }
 
+    public List<User> getAllUsers() {
+        return this.findUsersUseCase.all();
+    }
     public User createUser(SignupUserDto signupUserDto) {
         return this.createUserUseCase.create(signupUserDto);
 

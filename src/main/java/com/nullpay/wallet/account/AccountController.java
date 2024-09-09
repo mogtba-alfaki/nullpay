@@ -3,6 +3,7 @@ package com.nullpay.wallet.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,4 +23,9 @@ public class AccountController {
     public List<Account> getAllAccounts() {
         return this.accountService.getAllAccounts();
     }
+
+    @PostMapping("/")
+    public Account createAccount(){
+        return null;
+    };
 }

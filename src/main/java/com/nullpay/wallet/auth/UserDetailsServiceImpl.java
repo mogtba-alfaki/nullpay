@@ -1,6 +1,8 @@
 package com.nullpay.wallet.auth;
 
 import com.nullpay.wallet.user.UserService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,9 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        return this.userService.getUserByEmail(username);
     }
-
     public UserDetails loadUserById(String userId) {
         return this.userService.getUserById(userId);
     }

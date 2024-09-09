@@ -1,8 +1,10 @@
 package com.nullpay.wallet.auth;
 
 
+import com.nullpay.wallet.auth.dto.LoginUserDto;
 import com.nullpay.wallet.auth.dto.SignupUserDto;
 import com.nullpay.wallet.user.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +21,13 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public User signup(@RequestBody()SignupUserDto signupUserDto) {
+    public User signup(@RequestBody() SignupUserDto signupUserDto) {
         return this.authService.signup(signupUserDto);
     }
 
     @PostMapping("/login")
-    public User login() {
-        return null;
-        // login logic
+    public ResponseEntity<String> login(@RequestBody() LoginUserDto loginUserDto) {
+        String jwt = this.authService.login(loginUserDto);
+        return ResponseEntity.ok().body(jwt);
     }
 }

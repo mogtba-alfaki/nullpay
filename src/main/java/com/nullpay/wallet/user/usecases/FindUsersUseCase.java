@@ -4,6 +4,8 @@ import com.nullpay.wallet.user.User;
 import com.nullpay.wallet.user.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class FindUsersUseCase {
     private final UserRepository userRepository;
@@ -18,5 +20,9 @@ public class FindUsersUseCase {
 
     public User byEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public List<User> all() {
+        return this.userRepository.findAll();
     }
 }

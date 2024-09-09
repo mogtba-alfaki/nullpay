@@ -21,6 +21,8 @@ public class Wallet {
     @Column(name = "account_id")
     public String accountId;
 
+    @Column(name = "card_number")
+    public String cardNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
@@ -42,10 +44,11 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(String id, String userId, String accountId) {
+    public Wallet(String id, String userId, String accountId, String cardNumber) {
         this.id = id;
         this.userId = userId;
         this.accountId = accountId;
+        this.cardNumber = cardNumber;
     }
 
     public String getId() {
@@ -72,12 +75,26 @@ public class Wallet {
         this.accountId = accountId;
     }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+
     @Override
     public String toString() {
         return "Wallet{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
                 ", accountId='" + accountId + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", user=" + user +
+                ", account=" + account +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

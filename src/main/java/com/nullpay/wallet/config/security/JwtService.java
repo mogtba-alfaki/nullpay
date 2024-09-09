@@ -2,6 +2,7 @@ package com.nullpay.wallet.config.security;
 
 import com.nullpay.wallet.user.User;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
         // extract jwt secret from application.properties
-        private final String JWT_SECRET_KEY = "nullpaysecret";
+        private final String JWT_SECRET_KEY = "nullpaysecretnullpaysecretnullpaysecretnullpaysecretnullpaysecretnullpaysecret";
 
 
     public String extractUserId(String token) {
@@ -29,7 +30,11 @@ public class JwtService {
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userId = extractUserId(token);
+        System.out.println("extracted userId from toekn ***********");
+        System.out.println(userId);
         final User user = (User) userDetails;
+        System.out.println(user.getId());
+        System.out.println(userId);
         return (userId.equals(user.getId()) && !isTokenExpired(token));
     }
 
@@ -48,10 +53,15 @@ public class JwtService {
     }
 
     public Claims extractAllClaims(String token) {
-        return (Claims) Jwts.parserBuilder()
+        Jws<Claims> jwsClaims = Jwts.parserBuilder()
                 .setSigningKey(this.JWT_SECRET_KEY)
                 .build()
                 .parseClaimsJws(token);
+        return jwsClaims.getBody();
+//        return (Claims) Jwts.parserBuilder()
+//                .setSigningKey(this.JWT_SECRET_KEY)
+//                .build()
+//                .parseClaimsJws(token);
     }
 
 
@@ -65,5 +75,9 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + tokenExpirationInMilliSeconds))
                 .signWith(SignatureAlgorithm.HS256, this.JWT_SECRET_KEY)
                 .compact();
+    }
+
+    public String getSecretKey() {
+        return JWT_SECRET_KEY;
     }
 }
