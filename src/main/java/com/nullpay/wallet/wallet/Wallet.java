@@ -15,13 +15,13 @@ public class Wallet {
     @Id()
     public String id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     public String userId;
 
-    @Column(name = "account_id")
+    @Column(name = "account_id", nullable = false)
     public String accountId;
 
-    @Column(name = "card_number")
+    @Column(name = "card_number", nullable = false)
     public String cardNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)

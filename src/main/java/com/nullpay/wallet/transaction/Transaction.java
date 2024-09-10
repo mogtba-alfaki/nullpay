@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 @Table(name = "transactions")
 @Entity()
-class Transaction {
+public class Transaction {
 
     @Id()
     public String id;
@@ -26,6 +26,9 @@ class Transaction {
 
     @Column(name = "amount")
     public BigDecimal amount;
+
+    @Column(name = "reference_text")
+    public String referenceText;
 
     @CreationTimestamp
     @Column(updatable = false)

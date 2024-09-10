@@ -1,6 +1,7 @@
 package com.nullpay.wallet.account;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nullpay.wallet.account_type.AccountType;
 import com.nullpay.wallet.user.User;
 import com.nullpay.wallet.wallet.Wallet;
@@ -16,7 +17,7 @@ import java.util.Set;
 public class Account {
 
     @Id()
-    public String Id;
+    public String id;
 
     @Column(name = "user_id")
     public String userId;
@@ -25,13 +26,13 @@ public class Account {
     public String accountTypeId;
 
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_type_id", nullable = false, insertable = false, updatable = false)
     private AccountType accountType;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
+    // TODO JsonIgnore should be used temp only , solve and investigate why lazy loading is not working
+    @JsonIgnore
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     public User user;
 
@@ -49,17 +50,17 @@ public class Account {
     }
 
     public Account(String id, String userId, String accountTypeId) {
-        this.Id = id;
+        this.id = id;
         this.userId = userId;
         this.accountTypeId = accountTypeId;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getUserId() {
@@ -81,7 +82,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
                 ", accountTypeId='" + accountTypeId + '\'' +
                 '}';

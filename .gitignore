@@ -46,3 +46,6 @@ out/
 
 # ignore application.properties
 /src/main/resources/application.properties
+
+#ignore notes file
+/notes.txt

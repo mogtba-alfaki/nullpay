@@ -1,6 +1,9 @@
 package com.nullpay.wallet.account;
 
+import com.nullpay.wallet.account.dto.CreateAccountDto;
 import com.nullpay.wallet.account.usecases.CreateAccountUseCase;
+import com.nullpay.wallet.user.User;
+import com.nullpay.wallet.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,7 @@ public class AccountService {
     private final CreateAccountUseCase createAccountUseCase;
 
     @Autowired()
-    public AccountService(AccountRepository accountRepository, CreateAccountUseCase createAccountUseCase) {
+    public AccountService(AccountRepository accountRepository, CreateAccountUseCase createAccountUseCase, UserService userService) {
         this.accountRepository = accountRepository;
         this.createAccountUseCase = createAccountUseCase;
     }
@@ -22,7 +25,7 @@ public class AccountService {
         return this.accountRepository.findAll();
     }
 
-    public Account createAccount() {
-
+    public Account createAccount(CreateAccountDto createAccountDto) {
+            return this.createAccountUseCase.createAccount(createAccountDto);
     }
 }
