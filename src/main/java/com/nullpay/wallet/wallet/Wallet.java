@@ -1,6 +1,7 @@
 package com.nullpay.wallet.wallet;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nullpay.wallet.account.Account;
 import com.nullpay.wallet.user.User;
 import jakarta.persistence.*;

@@ -4,10 +4,9 @@ package com.nullpay.wallet.wallet;
 import com.nullpay.wallet.transaction.Transaction;
 import com.nullpay.wallet.wallet.dto.CreateWalletDto;
 import com.nullpay.wallet.wallet.dto.CreditWalletBalanceDto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.nullpay.wallet.wallet.dto.WalletBalanceDto;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/wallets")
@@ -26,5 +25,10 @@ public class WalletController {
     @PostMapping("/credit")
     public Transaction credit(@RequestBody CreditWalletBalanceDto creditWalletBalanceDto) {
         return this.walletService.creditWalletBalance(creditWalletBalanceDto);
+    }
+
+    @GetMapping("/{walletId}/balance")
+    public WalletBalanceDto getWalletBalance(@PathVariable("walletId") String walletId) {
+        return this.walletService.getWalletBalance(walletId);
     }
 }

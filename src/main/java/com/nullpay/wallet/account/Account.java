@@ -37,6 +37,7 @@ public class Account {
     public User user;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @JsonIgnore
     public Set<Wallet> wallets;
 
     @CreationTimestamp
