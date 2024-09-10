@@ -16,8 +16,6 @@ public class CreateWalletUseCase {
     }
 
     public Wallet createWallet(CreateWalletDto createWalletDto) {
-        System.out.println(createWalletDto);
-        System.out.println("*******************************************");
         Wallet wallet = new Wallet();
         wallet.id = String.valueOf(UUID.randomUUID());
         wallet.setUserId(createWalletDto.getUserId());

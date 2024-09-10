@@ -8,6 +8,6 @@ import java.math.BigDecimal;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
-    @Query("SELECT SUM(t.amount) FROM Transaction t WHERE t.walletId = :walletId AND t.transactionType = 'CREDIT' AND t.status = 'SUCCESS'")
+    @Query("SELECT SUM(t.amount) FROM Transaction t WHERE t.walletId = :walletId AND t.transactionType in ('CREDIT', 'DEBIT') AND t.status = 'SUCCESS'")
     BigDecimal getWalletBalance(String walletId);
 }
