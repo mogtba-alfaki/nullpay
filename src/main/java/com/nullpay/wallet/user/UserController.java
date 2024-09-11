@@ -20,7 +20,6 @@ public class UserController {
 
     @GetMapping("/")
     public List<User> getUsers() {
-        System.out.println("list of users *******************");
         List<User> users = this.userService.getAllUsers();
         return users;
     }
