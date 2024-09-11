@@ -18,10 +18,10 @@ public class CreateUserUseCase {
 
     public User create(SignupUserDto signupUserDto) {
         User user = new User();
-        user.Id = String.valueOf(UUID.randomUUID());
-        user.username = signupUserDto.getUsername();
-        user.email = signupUserDto.getEmail();
-        user.password = signupUserDto.getPassword();
+        user.setId(String.valueOf(UUID.randomUUID()));
+        user.setUsername(signupUserDto.getUsername());
+        user.setEmail(signupUserDto.getEmail());
+        user.setPassword(signupUserDto.getPassword());
         return this.userRepository.save(user);
     }
 
