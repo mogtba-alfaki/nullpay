@@ -27,8 +27,7 @@ public class CreateAccountUseCase {
         String accountTypeId = createAccountDto.getAccountTypeId();
 
         Optional<User> accountUser = this.userRepository.findById(userId);
-        Account userAccountWithTheSameTypeExist = this.accountRepository.findByAccountTypeIdAndUserId(userId, accountTypeId);
-
+        Account userAccountWithTheSameTypeExist = this.accountRepository.findByUserIdAndAccountTypeId(userId, accountTypeId);
         if(userAccountWithTheSameTypeExist != null) {
             throw new RuntimeException("User already has an account of this type");
         }
